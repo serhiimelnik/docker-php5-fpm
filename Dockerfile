@@ -1,7 +1,7 @@
 FROM php:5.6-fpm
-# Install modules
+
 COPY php.ini /usr/local/etc/php/php.ini
-#RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
@@ -15,7 +15,9 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-enable mongo \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug
+
 COPY xdebug.ini /usr/local/etc/php/xdebug.ini
+
 WORKDIR /var/www
 
 CMD ["php-fpm"]
