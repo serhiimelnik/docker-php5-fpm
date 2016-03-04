@@ -20,6 +20,9 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-enable mongo \
     && docker-php-ext-install pdo pdo_mysql
 
+RUN curl -sS https://getcomposer.org/installer | php
+RUN mv composer.phar /usr/local/bin/composer
+
 COPY xdebug.ini /usr/local/etc/php/xdebug.ini
 
 WORKDIR /var/www
