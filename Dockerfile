@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
         libpng12-dev \
+				libicu-dev \
         php5-dev \
         php5-mysql \
         php5-sqlite \
@@ -19,7 +20,9 @@ RUN apt-get update && apt-get install -y \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug \
     && docker-php-ext-enable mongo \
-    && docker-php-ext-install pdo pdo_mysql
+		&& docker-php-ext-install exif \
+    && docker-php-ext-install pdo pdo_mysql \
+		&& docker-php-ext-install -j$(nproc) intl
 
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
