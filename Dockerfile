@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
+RUN usermod -u 1000 www-data
 
 COPY xdebug.ini /usr/local/etc/php/xdebug.ini
 
